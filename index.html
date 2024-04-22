@@ -1,0 +1,39 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="stmarkdown.css">
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+</head>
+<h1><a href="#homework-4" id="homework-4">Homework 4</a></h1>
+<h2><a href="#stata-programming-ii-intermediate" id="stata-programming-ii-intermediate">Stata Programming II (Intermediate)</a></h2>
+<p><strong>Methods</strong></p>
+<p>For Homework 4, we initliazed a dataset with 30 observations and subsequently simulated age using both a normal distribution and t-distribution. Below is the code utilized and histogram generated from the simulation.</p>
+<pre><code>. set obs 30
+Number of observations (_N) was 0, now 30.
+
+. gen age = (rnormal() * 15) + 57
+
+. gen age_t=(rt(_N)*15)+57
+
+. hist age, ///
+&gt;    fcolor(orange%40) /// simulated normal 
+&gt;    addplot(hist age_t, fcolor(midblue%50)) /// simulated t-distribution 
+&gt;    normal /// theoretical normal
+&gt;    legend(on ///
+&gt;       lab(1 &quot;Sampled from Normal&quot;) ///
+&gt;           lab(2 &quot;Theoretical Normal&quot;) ///
+&gt;           lab(3 &quot;Sampled from t-distribution&quot;) ///
+&gt;           )
+(bin=5, start=20.218851, width=14.665178)
+
+. graph export histogram.png, replace
+file histogram.png saved as PNG format
+
+</code></pre>
+<p><strong>Figure 1. Age Distribution of Simulated Populations</strong></p>
+<p><img src="Graph.svg" ></p>
+<p><strong>Notes</strong></p>
+<p>Distribution of $\text{Age, years} \sim \mathcal{N}(\mu=57,,\sigma^{2}=225$)</p>
